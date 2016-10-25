@@ -27,8 +27,10 @@ Parse.Cloud.define('random', function(req, res) {
     }
 
     if (req.params.pubDate) {
-        query.greaterThanOrEqualTo("pubDate", req.params.pubDate);
+        query.greaterThanOrEqualTo("pubDate", new Date(req.params.pubDate));
     }
+
+    console.log(JSON.stringify(query));
 
     query.find({
         success: function(results) {
