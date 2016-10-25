@@ -18,8 +18,16 @@ Parse.Cloud.define('random', function(req, res) {
         query.containedIn("genres", req.params.genres);
     }
 
-    if (req.params.duration) {
-        query.lessThanOrEqualTo("duration", req.params.duration);
+    if (req.params.duration_max) {
+        query.lessThanOrEqualTo("duration", req.params.duration_max);
+    }
+
+    if (req.params.duration_min) {
+        query.greaterThanOrEqualTo("duration", req.params.duration_min);
+    }
+
+    if (req.params.pubDate) {
+        query.greaterThanOrEqualTo("pubDate", req.params.pubDate);
     }
 
     query.find({
